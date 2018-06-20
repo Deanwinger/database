@@ -126,7 +126,7 @@
 #### 6.4.5 返回结果给客户端
 - pass
 
-### MySQL查询优化器的局限
+### 6.5 MySQL查询优化器的局限
 #### 6.5.1 关联子查询
 - MySQL最糟糕的一类查询是WHERE 条件中包含IN()的子查询, 例子P223；
 
@@ -153,19 +153,42 @@
 #### 6.5.9 在同一个表上查询和更新
 - P232 例子值得一看；
 
+### 6.6 查询优化器的提示 (hint)
+- HIGH_PRIORITY 和 LOW_PRIORITY: 只是简单地控制了MySQL访问某个数据表的队列顺序；
+- DELAYED
+- STRAIGHT_JOIN
+- SQL_SAMLL_RESULT 和 SQL_BIG_RESULT
+- SQL_BUFFER_RESULT
+- SQL_CACHE, SQL_NO_CACHE
+- SQL_CALC_FOUND_ROWS
+- FOR UPDATE, LOCK IN SHARE MODE
+- USE INDEX, IGNORE INDEX, FORCE INDEX
 
+### 6.7 优化特定类型查询
+#### 6.7.1 优化COUNT()查询
 
+#### 6.7.2 优化关联查询
+- 确保ON或者USING字句中的列上有索引；
+~~~
+    一般来说, 只需要在关联顺序中的第二个表的相应列上创建索引, 没有用到的索引只会带来额外额负担；
+~~~
+- 确保任何GROUP BY 和 ORDER BY中的表达式只涉及到一个表中的列， 这样，才有可能使用索引优化这个过程；
 
+- 升级MySQL时需注意；
 
+#### 6.7.3 优化子查询
+- `尽量使用关联查询代替`
 
+#### 6.7.4 优化 GROUP BY 和 DISTINCT
+- 都可以使用索引来优化，这也是最有效的方法
 
+#### 6.7.5
 
+#### 6.7.6
 
+#### 6.7.7
 
+#### 6.7.8
 
+#### 6.7.9
 
-
-
-
-
-###### 6.4 finished
